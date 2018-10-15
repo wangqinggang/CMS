@@ -1,6 +1,7 @@
 # CMS
 CMS内容管理系统  JSP+Servlet+JDBC+Mysql
 # 项目文件介绍：
+
 [ ] CMS为eclipse项目
 [ ] CMS文档为课程设计时写的开发文档（质量较差，暂未修改）
 [ ] cms.sql文件为该项目数据库文件，可直接建库导入
