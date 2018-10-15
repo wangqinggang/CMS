@@ -23,17 +23,21 @@ public class AdminDaoImpl implements AdminDao {
 	 * @see com.cms.dao.AdminDao#save(java.sql.Connection, com.cms.entity.Admin)
 	 */
 	@Override
-	public boolean save(Connection connection, Admin admin) throws SQLException {
+	public boolean save(Admin admin) throws SQLException {
+		Connection connection = ConnectionFactory.getInstance().makeConnection();
+		
 		String sql = "insert into admin(admin_name,admin_pwd) values(?,?)";
 
 		PreparedStatement pStatement = connection.prepareStatement(sql);
 		pStatement.setString(1, admin.getAdmin_name());
 		pStatement.setString(2, admin.getAdmin_pwd());
 		int set = pStatement.executeUpdate();
+		connection.close();
 		pStatement.close();
 		if (set != 0) {
 			return true;
 		}
+		connection.close();
 		return false;
 
 	}
@@ -45,7 +49,8 @@ public class AdminDaoImpl implements AdminDao {
 	 * com.cms.entity.Admin)
 	 */
 	@Override
-	public boolean updateById(Connection connection, Admin admin) throws SQLException {
+	public boolean updateById(Admin admin) throws SQLException {
+		Connection connection = ConnectionFactory.getInstance().makeConnection();
 		String sql = "update admin set admin_name=? ,admin_pwd=?,admin_right=? where admin_id=?";
 		PreparedStatement pStatement = connection.prepareStatement(sql);
 		pStatement.setString(1, admin.getAdmin_name());
@@ -65,7 +70,8 @@ public class AdminDaoImpl implements AdminDao {
 	 * @see com.cms.dao.AdminDao#delete(java.sql.Connection, com.cms.entity.Admin)
 	 */
 	@Override
-	public boolean delete(Connection connection, int id) throws SQLException {
+	public boolean delete(int id) throws SQLException {
+		Connection connection = ConnectionFactory.getInstance().makeConnection();
 		String sql = "delete from admin where admin_id=?";
 
 		PreparedStatement pStatement = connection.prepareStatement(sql);
@@ -109,8 +115,9 @@ public class AdminDaoImpl implements AdminDao {
 	 * @see com.cms.dao.AdminDao#validate(java.sql.Connection, com.cms.entity.Admin)
 	 */
 	@Override
-	public boolean validate(Connection connection, Admin admin) throws SQLException {
+	public boolean validate(Admin admin) throws SQLException {
 		// TODO Auto-generated method stub
+		Connection connection = ConnectionFactory.getInstance().makeConnection();
 		connection = ConnectionFactory.getInstance().makeConnection();
 		String sql = "SELECT  * FROM admin WHERE admin_name = ? AND admin_pwd = ?;";
 		PreparedStatement pStatement = connection.prepareStatement(sql);

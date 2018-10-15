@@ -19,7 +19,7 @@ public interface AdminDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean save(Connection connection, Admin admin) throws SQLException;
+	public boolean save(Admin admin) throws SQLException;
 
 	/**
 	 * 根据用户id修改某一条记录
@@ -30,7 +30,7 @@ public interface AdminDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean updateById(Connection connection, Admin admin) throws SQLException;
+	public boolean updateById(Admin admin) throws SQLException;
 
 	/**
 	 * 根据id删除某一条用户记录
@@ -39,7 +39,7 @@ public interface AdminDao {
 	 * @param user
 	 * @throws SQLException
 	 */
-	public boolean delete(Connection connection, int id) throws SQLException;
+	public boolean delete(int id) throws SQLException;
 
 	/**
 	 * 得到数据库中所有用户数据
@@ -57,7 +57,7 @@ public interface AdminDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean validate(Connection connection, Admin admin) throws SQLException;
+	public boolean validate(Admin admin) throws SQLException;
 
 	/**
 	 * 通过Id获取要修改的管理员信息

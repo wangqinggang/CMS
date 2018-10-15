@@ -1,4 +1,4 @@
-package com.cms.servlet;
+package com.cms.service.article;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -8,33 +8,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cms.dao.ChannelDao;
-import com.cms.dao.impl.ChannelDaoImpl;
-import com.cms.entity.Channel;
+import com.cms.dao.ArticleDao;
+import com.cms.dao.impl.ArticleDaoImpl;
+import com.cms.entity.Article;
 
 
-public class getChannelByIdServlet extends HttpServlet {
+public class getArticleByIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public getChannelByIdServlet() {
+	public getArticleByIdServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
-		System.out.println("getChannelByid id=" + id);
-		ChannelDao cdao = new ChannelDaoImpl();
+		System.out.println("getArticleByid id=" + id);
+		ArticleDao aDao = new ArticleDaoImpl();
 
-		Channel channel = null;
+		Article article = null;
 		try {
-			channel = cdao.getById(Integer.parseInt(id));
+			article = aDao.getById(Integer.parseInt(id));
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,9 +44,8 @@ public class getChannelByIdServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("channel", channel);
-		request.getRequestDispatcher("../back_end/modifyChannel.jsp").forward(request, response);
-
+		request.setAttribute("article", article);
+		request.getRequestDispatcher("../back_end/modifyArticle.jsp").forward(request, response);
 	}
 
 }

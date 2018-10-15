@@ -1,4 +1,4 @@
-package com.cms.servlet;
+package com.cms.service.article;
 
 import java.io.IOException;
 import java.sql.SQLException;

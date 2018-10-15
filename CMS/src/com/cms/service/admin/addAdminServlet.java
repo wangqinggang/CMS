@@ -1,4 +1,4 @@
-package com.cms.servlet;
+package com.cms.service.admin;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,17 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cms.dao.AdminDao;
 import com.cms.dao.impl.AdminDaoImpl;
+import com.cms.entity.Admin;
 import com.cms.util.ConnectionFactory;
 
-/**
- * 删除管理员信息
- * 
- */
-public class deleteAdminServlet extends HttpServlet {
+public class addAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
-	public deleteAdminServlet() {
+	public addAdminServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,12 +29,18 @@ public class deleteAdminServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String name = request.getParameter("admin_name");
+		String pwd = request.getParameter("admin_pwd");
+		String right = request.getParameter("right");
+		Boolean admin_right = Boolean.parseBoolean(right);
+		System.out.println("执行添加管理员操作");
+		Admin admin = new Admin();
+		admin.setAdmin_name(name);
+		admin.setAdmin_pwd(pwd);
 		AdminDao aDao = new AdminDaoImpl();
-		int id = Integer.parseInt(request.getParameter("id"));
-		Connection connection = ConnectionFactory.getInstance().makeConnection();
 
 		try {
-			if (aDao.delete(connection, id)) {
+			if (aDao.save(admin)) {
 				response.sendRedirect("../back_end/listAdminServlet");
 			} else {
 				response.sendRedirect("../back_end/error.jsp");
@@ -47,7 +49,7 @@ public class deleteAdminServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 }
-

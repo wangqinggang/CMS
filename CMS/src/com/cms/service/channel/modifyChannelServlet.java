@@ -1,4 +1,4 @@
-package com.cms.servlet;
+package com.cms.service.channel;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cms.dao.ArticleDao;
-import com.cms.dao.impl.ArticleDaoImpl;
-import com.cms.entity.Article;
+import com.cms.dao.ChannelDao;
+import com.cms.dao.impl.ChannelDaoImpl;
+import com.cms.entity.Channel;
 import com.cms.util.ConnectionFactory;
 
 
-public class addArticleServlet extends HttpServlet {
+public class modifyChannelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	public addArticleServlet() {
+	public modifyChannelServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,25 +32,22 @@ public class addArticleServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String name = request.getParameter("title");
-		String user_id = request.getParameter("user_id");
-		String summery = request.getParameter("article_summery");
-		String content = request.getParameter("content");
-		String channel_id = request.getParameter("channel_id");
-		System.out.println("执行添加文章操作");
-		Article article = new Article();
-		article.setTitle(name);
-		article.setUser_id(Integer.parseInt(user_id));
-		article.setSummary(summery);
-		article.setContent(content);
-		article.setChannel_id(Integer.parseInt(channel_id));
-		ArticleDao aDao = new ArticleDaoImpl();
+		String name = request.getParameter("channel_name");
+		String type = request.getParameter("channel_type");
+		System.out.println("执行修改栏目操作");
+		String id = request.getParameter("id");
+		Channel channel = new Channel();
 
+		System.out.println(id);
+		channel.setChannel_id(Integer.parseInt(id));
+		channel.setChannel_name(name);
+		channel.setChannel_type(type);
+		ChannelDao cDao = new ChannelDaoImpl();
 		Connection connection = ConnectionFactory.getInstance().makeConnection();
 
 		try {
-			if (aDao.save(connection, article)) {
-				response.sendRedirect("../back_end/listArticleServlet");
+			if (cDao.updateById(connection, channel)) {
+				response.sendRedirect("../back_end/listChannelServlet");
 			} else {
 				response.sendRedirect("../back_end/error.jsp");
 			}

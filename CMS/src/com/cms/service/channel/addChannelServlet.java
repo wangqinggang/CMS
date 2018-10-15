@@ -1,4 +1,4 @@
-package com.cms.servlet;
+package com.cms.service.channel;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cms.dao.AdminDao;
-import com.cms.dao.impl.AdminDaoImpl;
-import com.cms.entity.Admin;
+import com.cms.dao.ChannelDao;
+import com.cms.dao.impl.ChannelDaoImpl;
+import com.cms.entity.Channel;
 import com.cms.util.ConnectionFactory;
 
-public class modifyAdminServlet extends HttpServlet {
+
+public class addChannelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	public modifyAdminServlet() {
+	public addChannelServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -31,25 +31,19 @@ public class modifyAdminServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String name = request.getParameter("admin_name");
-		String pwd = request.getParameter("admin_pwd");
-		String right = request.getParameter("right");
-		Boolean admin_right = Boolean.parseBoolean(right);
-		System.out.println("执行添加管理员操作");
-		String id = request.getParameter("id");
-		Admin admin = new Admin();
+		String name = request.getParameter("channel_name");
+		String type = request.getParameter("channel_type");
 
-		System.out.println(id);
-		admin.setAdmin_id(Integer.parseInt(id));
-		admin.setAdmin_name(name);
-		admin.setAdmin_pwd(pwd);
-		admin.setAdmin_right(admin_right);
-		AdminDao aDao = new AdminDaoImpl();
+		System.out.println("执行添加栏目操作");
+		Channel channel = new Channel();
+		channel.setChannel_name(name);
+		channel.setChannel_type(type);
+		ChannelDao cDao = new ChannelDaoImpl();
 		Connection connection = ConnectionFactory.getInstance().makeConnection();
 
 		try {
-			if (aDao.updateById(connection, admin)) {
-				response.sendRedirect("../back_end/listAdminServlet");
+			if (cDao.save(connection, channel)) {
+				response.sendRedirect("../back_end/listChannelServlet");
 			} else {
 				response.sendRedirect("../back_end/error.jsp");
 			}

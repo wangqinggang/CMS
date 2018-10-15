@@ -1,4 +1,4 @@
-package com.cms.servlet;
+package com.cms.service.article;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,46 +15,41 @@ import com.cms.entity.Article;
 import com.cms.util.ConnectionFactory;
 
 
-public class modifyArticleServlet extends HttpServlet {
+public class addArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	public modifyArticleServlet() {
+	public addArticleServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String title = request.getParameter("title");
+		String name = request.getParameter("title");
 		String user_id = request.getParameter("user_id");
-		String summary = request.getParameter("summary");
+		String summery = request.getParameter("article_summery");
 		String content = request.getParameter("content");
 		String channel_id = request.getParameter("channel_id");
-		System.out.println("执行修改文章操作");
-		String id = request.getParameter("id");
+		System.out.println("执行添加文章操作");
 		Article article = new Article();
-
-		System.out.println("获得的id为" + id);
-
-		article.setArticle_id(Integer.parseInt(id));
-		article.setTitle(title);
+		article.setTitle(name);
 		article.setUser_id(Integer.parseInt(user_id));
-		article.setSummary(summary);
+		article.setSummary(summery);
 		article.setContent(content);
 		article.setChannel_id(Integer.parseInt(channel_id));
-
 		ArticleDao aDao = new ArticleDaoImpl();
+
 		Connection connection = ConnectionFactory.getInstance().makeConnection();
 
 		try {
-			if (aDao.updateById(connection, article)) {
+			if (aDao.save(connection, article)) {
 				response.sendRedirect("../back_end/listArticleServlet");
 			} else {
 				response.sendRedirect("../back_end/error.jsp");
