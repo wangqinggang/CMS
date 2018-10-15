@@ -1,7 +1,6 @@
 package com.cms.service.admin;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cms.dao.AdminDao;
 import com.cms.dao.impl.AdminDaoImpl;
-import com.cms.util.ConnectionFactory;
 
 /**
  * 删除管理员信息

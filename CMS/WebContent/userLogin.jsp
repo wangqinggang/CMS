@@ -35,7 +35,7 @@
      </script>
 </head>
 <body>
-<!--<div class="container">
+<div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<div class="page-header">
@@ -44,7 +44,7 @@
 				</h1>
 			</div>
 		</div>
-	</div>-->
+	</div>
 	<div class="row clearfix">
 		<div class="col-md-3 column">
 		</div>
@@ -92,7 +92,7 @@
 	</div>
 	
 	
-<!--	<div class="row clearfix">
+	<div class="row clearfix">
 		<div class="col-md-12 column">
 			 <div class="bottom">
 	<a href="#" rel="nofollow">关于我们</a>|<a href="#" rel="nofollow">广告服务</a>|<a href="#" rel="nofollow">联系我们</a>|<a href="#" rel="nofollow">法律声明</a>|<a href="#" rel="nofollow">网站地图</a>|<a target="_blank" href="#">版权声明</a>|<a href="#" rel="nofollow">帮助中心</a><br />
@@ -100,6 +100,6 @@
 </div>
 		</div>
 	</div>
-</div>-->
+</div>
 </body>
 </html>

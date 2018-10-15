@@ -1,4 +1,4 @@
-package com.cms.controller.user;
+package com.cms.service.user;
 
 import java.io.IOException;
 

@@ -35,6 +35,17 @@ public class UserLoginFilter implements Filter {
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
+			
+//			 String s=req.getHeader("Referer");
+//	            if (s==null){
+//	                req.getRequestDispatcher("/login/toLogin").forward(req,resp);
+//	                return;
+//	            }else {
+//	                return;
+//	            }
+
+
+			
 			System.out.println("用户权限验证filter执行");
 			session.setAttribute("error", "你还没有登录！");
 			req.getRequestDispatcher("../userLogin.jsp").forward(req, resp);// 强制类型转换之后的

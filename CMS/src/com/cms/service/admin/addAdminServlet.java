@@ -1,7 +1,6 @@
 package com.cms.service.admin;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.cms.dao.AdminDao;
 import com.cms.dao.impl.AdminDaoImpl;
 import com.cms.entity.Admin;
-import com.cms.util.ConnectionFactory;
 
 public class addAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
