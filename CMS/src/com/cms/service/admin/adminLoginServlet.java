@@ -45,9 +45,8 @@ public class adminLoginServlet extends HttpServlet {
 		admin.setAdmin_name(uname);
 		admin.setAdmin_pwd(upwd);
 		AdminDao aDao = new AdminDaoImpl();
-		Connection connection = ConnectionFactory.getInstance().makeConnection();
 		try {
-			if (aDao.validate(connection, admin)) {
+			if (aDao.validate(admin)) {
 				request.getSession().setAttribute("admin", admin);
 				response.sendRedirect("./back_end/backindex.jsp");
 			} else {

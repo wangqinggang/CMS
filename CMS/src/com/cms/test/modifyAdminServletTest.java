@@ -19,7 +19,6 @@ public class modifyAdminServletTest {
 
 	@Test
 	public void test() {
-		Connection connection = ConnectionFactory.getInstance().makeConnection();
 		Admin admin = new Admin();
 		AdminDao aDao = new AdminDaoImpl();
 		int id = 6;
@@ -27,7 +26,7 @@ public class modifyAdminServletTest {
 		admin.setAdmin_pwd("123");
 		admin.setAdmin_right(false);
 		try {
-			aDao.updateById(connection, admin);
+			aDao.updateById(admin);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

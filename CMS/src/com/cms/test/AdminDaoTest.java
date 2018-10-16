@@ -43,10 +43,9 @@ public class AdminDaoTest {
 		admin.setAdmin_name("123");
 		admin.setAdmin_pwd("123");
 		admin.setAdmin_right(false);
-		Connection connection = ConnectionFactory.getInstance().makeConnection();
 		try {
 			System.out.println("12121212");
-			if (aDao.updateById(connection, admin)) {
+			if (aDao.updateById(admin)) {
 				System.out.println("1111111");
 			}
 

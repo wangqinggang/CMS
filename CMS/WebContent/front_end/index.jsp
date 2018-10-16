@@ -1,4 +1,4 @@
-<%@page import="com.cms.controller.user.userLoginServlet"%>
+<%@page import="com.cms.service.user.userLoginServlet"%>
 <%@page import="com.cms.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
